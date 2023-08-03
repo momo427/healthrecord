@@ -1,3 +1,5 @@
+let allHealthData = []; // To store data from all users
+
 document.getElementById('healthForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -6,19 +8,12 @@ document.getElementById('healthForm').addEventListener('submit', function(event)
     const height = parseFloat(document.getElementById('height').value);
     const condition = document.getElementById('condition').value;
 
-    // Dummy data for 5 people
-    const dummyData = [
-        { name: 'Person 1', weight: 70, height: 170, condition: 'Condition 1' },
-        { name: 'Person 2', weight: 65, height: 165, condition: 'Condition 2' },
-        { name: 'Person 3', weight: 80, height: 180, condition: 'Condition 1' },
-        { name: 'Person 4', weight: 75, height: 175, condition: 'Condition 3' },
-        { name: 'Person 5', weight: 90, height: 190, condition: 'Condition 2' },
-    ];
+    // Store the new user's data
+    const userData = { name, weight, height, condition };
+    allHealthData.push(userData);
 
-    dummyData.push({ name, weight, height, condition });
-
-    // Update charts
-    updateCharts(dummyData);
+    // Update charts with all accumulated data
+    updateCharts(allHealthData);
 
     // Clear input values
     document.getElementById('name').value = '';
@@ -27,6 +22,10 @@ document.getElementById('healthForm').addEventListener('submit', function(event)
     document.getElementById('condition').value = '';
 });
 
+// ...
+
+let pieChart;
+let barChart;
 
 function updateCharts(data) {
     const conditions = {};
@@ -43,7 +42,16 @@ function updateCharts(data) {
     const barLabels = Object.keys(heights);
     const barData = barLabels.map(height => heights[height]);
 
-    const pieChart = new Chart(document.getElementById('pieChart'), {
+    // Check if chart instances already exist, then destroy them
+    if (pieChart) {
+        pieChart.destroy();
+    }
+    if (barChart) {
+        barChart.destroy();
+    }
+
+    // Create new chart instances
+    pieChart = new Chart(document.getElementById('pieChart'), {
         type: 'pie',
         data: {
             labels: pieLabels,
@@ -53,14 +61,16 @@ function updateCharts(data) {
             }]
         },
         options: {
-            title: {
-                display: true,
-                text: 'Medical Conditions'
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Medical Conditions'
+                }
             }
         }
     });
 
-    const barChart = new Chart(document.getElementById('barChart'), {
+    barChart = new Chart(document.getElementById('barChart'), {
         type: 'bar',
         data: {
             labels: barLabels,
@@ -76,10 +86,14 @@ function updateCharts(data) {
                     beginAtZero: true
                 }
             },
-            title: {
-                display: true,
-                text: 'Distribution of Heights'
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Distribution of Heights'
+                }
             }
         }
     });
 }
+
+// ...

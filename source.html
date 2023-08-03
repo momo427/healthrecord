@@ -16,15 +16,17 @@
             <label for="weight">Weight (kg):</label>
             <input type="number" id="weight" required>
 
-            <label for="height">Height (cm):</label>
-            <input type="number" id="height" required>
+            <label for="height">Height (in):</label>
+            <input type="int" id="height" required>
 
             <label for="condition">Medical Condition:</label>
             <select id="condition">
-                <option value="Condition 1">Condition 1</option>
-                <option value="Condition 2">Condition 2</option>
-                <option value="Condition 3">Condition 3</option>
-                <!-- Add more options here -->
+                <option value="Heart Disease">Heart Disease</option>
+                <option value="Diabetes">Diabetes</option>
+                <option value="Eye Disease">Eye Disease</option>
+                <option value="Breast Cancer">Breast Cancer</option>
+                <option value="Respiratory Disease">Respiratory Disease</option>
+                <option value="None">None</option>
             </select>
 
             <button type="submit">Submit</button>
@@ -40,6 +42,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
