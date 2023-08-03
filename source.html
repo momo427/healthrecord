@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Health Data Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Health Data Form</h1>
+        <form id="healthForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" required>
+
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" required>
+
+            <label for="condition">Medical Condition:</label>
+            <select id="condition">
+                <option value="Condition 1">Condition 1</option>
+                <option value="Condition 2">Condition 2</option>
+                <option value="Condition 3">Condition 3</option>
+                <!-- Add more options here -->
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div class="charts">
+            <div class="pie-chart">
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="bar-chart">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
